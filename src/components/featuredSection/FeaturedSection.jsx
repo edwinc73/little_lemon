@@ -1,0 +1,100 @@
+import greekSaladImage from "../../images/greek salad.jpg";
+import bruchettaImage from "../../images/bruchetta.png";
+import greekImage from "../../images/lemon dessert.jpg";
+import deliveryIcon from "../../images/Delivery.svg";
+
+const recipeData = [
+  {
+    id: 1,
+    name: "Greek Salad",
+    src: greekSaladImage,
+    price: "12.99",
+    description:
+      "The famous greek salad of crispy lettuce, peppers, olives and our Chicago style feta cheese, garnished with crunchy garlic and rosemary croutons. ",
+  },
+  {
+    id: 2,
+    name: " Bruchetta",
+    src: bruchettaImage,
+    price: "5.99",
+    description:
+      "Our Bruschetta is made from grilled bread that has been smeared with garlic and seasoned with salt and olive oil.",
+  },
+  {
+    id: 3,
+    name: "Greek Lemon Dessert",
+    src: greekImage,
+    price: "5.00",
+    description:
+      "This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.",
+  },
+];
+
+const imageHeight = { height: "230px" };
+const cardBorderRadius = "15px";
+
+const SpecialsCard = ({ id, name, src, price, description }) => {
+  return (
+    <article
+      className="col-md-4 col-12 bg-gray p-0"
+      style={{ borderRadius: cardBorderRadius }}
+      key={id}
+    >
+      <img
+        src={src}
+        className="img-fluid w-100"
+        alt={`Delicious ${name}`}
+        style={{
+          objectFit: "cover",
+          borderRadius: `${cardBorderRadius} ${cardBorderRadius} 0 0`,
+          ...imageHeight,
+        }}
+      />
+      <div
+        className="details container d-flex flex-column px-3 py-2"
+        style={{ maxHeight: imageHeight, minHeight: "90px" }}
+      >
+        <span className="d-flex flex-column flex-lg-row justify-content-between mt-3 mb-1">
+          <p className="col-12 col-lg-9 col-md-12 font-weight-bold p-0 m-0">
+            {name}
+          </p>
+          <p className="col-12 col-md-3 text-lg-right p-0 m-0">${price}</p>
+        </span>
+        <p className="text-dark p-0 m-0 d-none d-lg-block">{description}</p>
+        <a
+          href="/"
+          className="text-green  justify-self-end font-weight-bold mt-auto"
+        >
+          Order Delivery
+          <img
+            src={deliveryIcon}
+            style={{ height: "15px" }}
+            alt="delivery icon"
+            className="ml-2"
+          />
+        </a>
+      </div>
+    </article>
+  );
+};
+
+export default function FeaturedSection() {
+  return (
+    <section className="bg-white pb-5" style={{ paddingTop: "150px" }}>
+      <div className="container">
+        <div className="row mb-5">
+          <h2>This week’s specials!</h2>
+          <button className="btn ml-auto bg-yellow">Order Online</button>
+        </div>
+        <div
+          className="d-flex flex-column flex-md-row justify-content-between"
+          style={{ gap: "20px" }}
+        >
+          {recipeData.map((item) => (
+            <SpecialsCard {...item} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

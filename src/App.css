@@ -17,3 +17,7 @@
 a.text-yellow:hover {
   color: white;
 }
+
+.bg-gray {
+  background-color: #e4e4e4;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import FeaturedSection from "./components/featuredSection/featuredSection";
+import FeaturedSection from "./components/featuredSection/FeaturedSection";
 import Header from "./components/header/Header";
 import Nav from "./components/nav/Nav";
 import HeroSection from "./components/heroSection/HeroSection";
