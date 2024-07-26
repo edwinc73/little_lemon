@@ -10,9 +10,12 @@ import TestimonialSection from "./components/testimonialsSection/TestimonialSect
 import AboutSection from "./components/about/AboutSection";
 import Footer from "./components/footer/Footer";
 
+// import { ThemeProvider } from "./context/ThemeContext";
+
 function App() {
   return (
     <React.Fragment>
+      {/* <ThemeProvider> */}
       <Header>
         <Nav></Nav>
       </Header>
@@ -23,6 +26,7 @@ function App() {
         <AboutSection></AboutSection>
         <Footer></Footer>
       </Main>
+      {/* </ThemeProvider> */}
     </React.Fragment>
   );
 }

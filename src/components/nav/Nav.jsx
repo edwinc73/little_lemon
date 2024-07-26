@@ -12,18 +12,18 @@ const NavLink = ({ link, name, active }) => {
 
 export default function Nav() {
   const navLink = [
-    { link: "#", name: "Home", active: true },
-    { link: "#", name: "About", active: false },
-    { link: "#", name: "Menu", active: false },
-    { link: "#", name: "Reservations", active: false },
-    { link: "#", name: "Order Online", active: false },
-    { link: "#", name: "Login", active: false },
+    { link: "/", name: "Home", active: true },
+    { link: "/", name: "About", active: false },
+    { link: "/", name: "Menu", active: false },
+    { link: "/", name: "Reservations", active: false },
+    { link: "/", name: "Order Online", active: false },
+    { link: "/", name: "Login", active: false },
   ];
 
   return (
     <div className="container">
       <nav className="navbar navbar-expand-md navbar-light py-3">
-        <a href="#">
+        <a href="/" aria-label="Home">
           <img
             src={logo}
             alt="Little Lemon Logo"
