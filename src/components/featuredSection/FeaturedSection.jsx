@@ -52,7 +52,11 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
       />
       <div
         className="details container d-flex flex-column px-3 py-2"
-        style={{ maxHeight: imageHeight, minHeight: "90px" }}
+        style={{
+          maxHeight: imageHeight.height,
+          minHeight: "90px",
+          boxSizing: "border-box",
+        }}
       >
         <span className="d-flex flex-column flex-lg-row justify-content-between mt-3 mb-1">
           <p className="col-12 col-lg-9 col-md-12 font-weight-bold p-0 m-0">
@@ -60,7 +64,13 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
           </p>
           <p className="col-12 col-md-3 text-lg-right p-0 m-0">${price}</p>
         </span>
-        <p className="text-dark p-0 m-0 d-none d-lg-block">{description}</p>
+        <p
+          className="text-dark p-0 m-0 d-none d-lg-block"
+          style={{ height: "130px" }}
+        >
+          {description}
+        </p>
+
         <a
           href="/"
           className="text-green  justify-self-end font-weight-bold mt-auto"
