@@ -1,0 +1,19 @@
+.bg-green {
+  background-color: #495e57;
+}
+
+.text-green {
+  color: #495e57;
+}
+
+.bg-yellow {
+  background-color: #f4ce14;
+}
+
+.text-yellow {
+  color: #f4ce14;
+}
+
+a.text-yellow:hover {
+  color: white;
+}

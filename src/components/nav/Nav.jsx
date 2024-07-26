@@ -2,7 +2,7 @@ import logo from "../../images/Logo.svg";
 
 const NavLink = ({ link, name, active }) => {
   return (
-    <li className={`nav-item ${active ? "active" : ""}`}>
+    <li className={`nav-item ${active ? "active" : ""} key=${name}`}>
       <a className="nav-link" href={link}>
         {name} {active && <span class="sr-only">(current)</span>}
       </a>

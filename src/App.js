@@ -24,8 +24,8 @@ function App() {
         <FeaturedSection></FeaturedSection>
         <TestimonialSection></TestimonialSection>
         <AboutSection></AboutSection>
-        <Footer></Footer>
       </Main>
+      <Footer></Footer>
       {/* </ThemeProvider> */}
     </React.Fragment>
   );
