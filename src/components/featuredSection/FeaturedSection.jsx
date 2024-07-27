@@ -36,9 +36,8 @@ const cardBorderRadius = "15px";
 const SpecialsCard = ({ id, name, src, price, description }) => {
   return (
     <article
-      className="col-md-4 col-12 bg-gray px-0"
+      className="col-12 bg-gray px-0"
       style={{ borderRadius: cardBorderRadius }}
-      key={id}
     >
       <img
         src={src}
@@ -91,16 +90,19 @@ export default function FeaturedSection() {
   return (
     <section className="bg-white">
       <div className="container">
-        <div className="row mb-5">
-          <h2>This week’s specials!</h2>
-          <button className="btn ml-auto bg-yellow">Order Online</button>
+        <div className="row mb-5 text-center text-md-left">
+          <h2 className="m-0 col-12 col-md-8 mb-2 mb-md-0">
+            This week’s specials!
+          </h2>
+          <button className="btn ml-auto mx-auto ml-md-auto mr-md-0 bg-yellow">
+            Order Online
+          </button>
         </div>
-        <div
-          className="d-flex flex-column flex-md-row justify-content-between"
-          style={{ gap: "20px" }}
-        >
+        <div className="row">
           {recipeData.map((item) => (
-            <SpecialsCard {...item} />
+            <div className="col-md-4 col-12 p-2" key={item.id}>
+              <SpecialsCard {...item} />
+            </div>
           ))}
         </div>
       </div>
