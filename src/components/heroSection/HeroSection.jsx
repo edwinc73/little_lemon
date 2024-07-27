@@ -1,4 +1,5 @@
 import heroImage from "../../images/restauranfood.jpg";
+import Button from "../button/Button";
 
 const offset = 180;
 export default function HeroSection() {
@@ -33,7 +34,7 @@ export default function HeroSection() {
                 traditional recipes served with a modern twist.
               </p>
             </div>
-            <button className="btn bg-yellow">Reserve Table</button>
+            <Button>Reserve Table</Button>
           </div>
           <img
             src={heroImage}

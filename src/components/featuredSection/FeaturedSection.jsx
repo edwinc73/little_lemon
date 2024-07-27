@@ -2,6 +2,7 @@ import greekSaladImage from "../../images/greek salad.jpg";
 import bruchettaImage from "../../images/bruchetta.png";
 import greekImage from "../../images/lemon dessert.jpg";
 import deliveryIcon from "../../images/Delivery.svg";
+import Button from "../button/Button";
 
 const recipeData = [
   {
@@ -94,9 +95,9 @@ export default function FeaturedSection() {
           <h2 className="m-0 col-12 col-md-8 mb-2 mb-md-0">
             This week’s specials!
           </h2>
-          <button className="btn ml-auto mx-auto ml-md-auto mr-md-0 bg-yellow">
+          <Button className="btn ml-auto mx-auto ml-md-auto mr-md-0 bg-yellow">
             Order Online
-          </button>
+          </Button>
         </div>
         <div className="row">
           {recipeData.map((item) => (
