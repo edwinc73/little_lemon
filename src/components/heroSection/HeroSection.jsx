@@ -1,38 +1,52 @@
 import heroImage from "../../images/restauranfood.jpg";
 
-const offset = "-170px";
+const offset = 180;
 export default function HeroSection() {
   return (
-    <section className="bg-green" style={{ marginBottom: offset }}>
+    <section
+      className="bg-green position-relative"
+      style={{ marginBottom: `-${offset - 90}px` }}
+    >
+      <div
+        className="col-12 bg-white"
+        style={{
+          position: "absolute",
+          bottom: "-1px",
+          height: `${offset}px`,
+          zIndex: "0",
+        }}
+      ></div>
       <div className="container">
-        <div className="row">
+        <div className="row align-items-center">
           <div
-            className="col-12 col-md-6 d-flex flex-column justify-content-between"
-            style={{ height: "350px" }}
+            className="col-12 col-md-6 text-center text-md-left"
+            id="hero-text-container"
           >
-            <div className="text-container" st>
+            <div className="text-container">
               <h1 className="text-yellow">Little Lemon</h1>
-              <h2 className="text-white mb-5">Chicago</h2>
-              <p className="text-white w-75">
+              <h2 className="text-white">Chicago</h2>
+              <p
+                className="text-white my-4 mx-md-0 mx-auto"
+                style={{ maxWidth: "20rem" }}
+              >
                 We are a family owned Mediterranean restaurant, focused on
                 traditional recipes served with a modern twist.
               </p>
             </div>
-            <button className="btn bg-yellow mr-auto">Reserve Table</button>
+            <button className="btn bg-yellow">Reserve Table</button>
           </div>
-          <div className="col-12 col-md-6">
-            <img
-              src={heroImage}
-              alt=""
-              className="img-fluid"
-              style={{
-                maxHeight: "500px",
-                minWidth: "370px",
-                objectFit: "cover",
-                borderRadius: "16px",
-              }}
-            />
-          </div>
+          <img
+            src={heroImage}
+            alt="Delicious Little Lemon specials"
+            className="img-fluid mx-auto col-6 p-0"
+            style={{
+              maxHeight: "520px",
+              width: "100%",
+              minWidth: "300px",
+              objectFit: "cover",
+              borderRadius: "15px",
+            }}
+          />
         </div>
       </div>
     </section>

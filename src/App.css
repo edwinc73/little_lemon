@@ -26,3 +26,13 @@ section {
   padding-top: 90px;
   padding-bottom: 90px;
 }
+
+#hero-text-container {
+  margin-bottom: 180px;
+}
+
+@media (max-width: 768px) {
+  #hero-text-container {
+    margin-bottom: 30px;
+  }
+}

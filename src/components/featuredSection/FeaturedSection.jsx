@@ -89,7 +89,7 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
 
 export default function FeaturedSection() {
   return (
-    <section className="bg-white" style={{ paddingTop: "150px" }}>
+    <section className="bg-white">
       <div className="container">
         <div className="row mb-5">
           <h2>This week’s specials!</h2>
