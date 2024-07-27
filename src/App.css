@@ -21,3 +21,8 @@ a.text-yellow:hover {
 .bg-gray {
   background-color: #e4e4e4;
 }
+
+section {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}

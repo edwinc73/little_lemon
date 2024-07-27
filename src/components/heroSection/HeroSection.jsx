@@ -1,9 +1,9 @@
 import heroImage from "../../images/restauranfood.jpg";
 
-const offset = "-150px";
+const offset = "-170px";
 export default function HeroSection() {
   return (
-    <section className="bg-green py-5" style={{ marginBottom: offset }}>
+    <section className="bg-green" style={{ marginBottom: offset }}>
       <div className="container">
         <div className="row">
           <div

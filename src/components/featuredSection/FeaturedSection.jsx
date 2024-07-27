@@ -36,7 +36,7 @@ const cardBorderRadius = "15px";
 const SpecialsCard = ({ id, name, src, price, description }) => {
   return (
     <article
-      className="col-md-4 col-12 bg-gray p-0"
+      className="col-md-4 col-12 bg-gray px-0"
       style={{ borderRadius: cardBorderRadius }}
       key={id}
     >
@@ -70,7 +70,6 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
         >
           {description}
         </p>
-
         <a
           href="/"
           className="text-green  justify-self-end font-weight-bold mt-auto"
@@ -90,7 +89,7 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
 
 export default function FeaturedSection() {
   return (
-    <section className="bg-white pb-5" style={{ paddingTop: "150px" }}>
+    <section className="bg-white" style={{ paddingTop: "150px" }}>
       <div className="container">
         <div className="row mb-5">
           <h2>This week’s specials!</h2>
