@@ -59,7 +59,7 @@ const Rating = ({ rating }) => {
 
 const TestimonialCard = (props) => {
   return (
-    <div className="bg-white rounded col-12 p-3">
+    <div className="bg-white col-12 p-3" style={{ borderRadius: "15px" }}>
       <div
         className="container p-0 d-flex flex-column justify-content-between"
         style={{ height: "180px" }}
