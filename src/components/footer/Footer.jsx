@@ -49,7 +49,7 @@ const FootNavCol = ({ title, arr }) => {
 export default function Footer() {
   return (
     <footer className="bg-green">
-      <div className="container" style={{ padding: "120px 0" }}>
+      <div className="container" style={{ padding: "90px 0" }}>
         <div className="row align-item-md-left">
           <FooterContainer>
             <img
