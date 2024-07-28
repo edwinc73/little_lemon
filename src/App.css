@@ -2,6 +2,10 @@
   font-family: "Markazi Text", serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 p,
 .small,
 button,

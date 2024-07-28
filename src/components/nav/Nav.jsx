@@ -1,11 +1,16 @@
 import logo from "../../images/Logo.svg";
+import { NavLink } from "react-router-dom";
 
-const NavLink = ({ link, name, active }) => {
+const NavLinkComponent = ({ link, name, active }) => {
   return (
-    <li className={`nav-item ${active ? "active" : ""} key=${name}`}>
-      <a className="nav-link" href={link}>
+    <li className={`nav-item`} key={name}>
+      <NavLink
+        to={link}
+        className={`${({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? "active" : ""} nav-link `}
+      >
         {name} {active && <span class="sr-only">(current)</span>}
-      </a>
+      </NavLink>
     </li>
   );
 };
@@ -13,11 +18,11 @@ const NavLink = ({ link, name, active }) => {
 export default function Nav() {
   const navLink = [
     { link: "/", name: "Home", active: true },
-    { link: "/", name: "About", active: false },
-    { link: "/", name: "Menu", active: false },
-    { link: "/", name: "Reservations", active: false },
-    { link: "/", name: "Order Online", active: false },
-    { link: "/", name: "Login", active: false },
+    { link: "/about", name: "About", active: false },
+    { link: "/menu", name: "Menu", active: false },
+    { link: "/reservation", name: "Reservations", active: false },
+    { link: "/orderonline", name: "Order Online", active: false },
+    { link: "/login", name: "Login", active: false },
   ];
 
   return (
@@ -47,7 +52,12 @@ export default function Nav() {
           <ul className="navbar-nav ml-auto">
             {navLink.map(({ link, name, active }) => {
               return (
-                <NavLink link={link} name={name} active={active}></NavLink>
+                <NavLinkComponent
+                  link={link}
+                  name={name}
+                  active={active}
+                  key={name}
+                ></NavLinkComponent>
               );
             })}
           </ul>

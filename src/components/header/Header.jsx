@@ -1,5 +1,10 @@
 import React from "react";
+import Nav from "../nav/Nav";
 
-export default function Header({ children }) {
-  return <header>{children}</header>;
+export default function Header() {
+  return (
+    <header>
+      <Nav />
+    </header>
+  );
 }

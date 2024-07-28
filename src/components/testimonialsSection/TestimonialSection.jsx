@@ -97,10 +97,7 @@ export default function TestimonialSection() {
         <h2 className="text-white text-center pb-4">Our Customers love us!</h2>
         <div id="testimonials" className="my-5 row justify-content-center">
           {testimonials.map((item) => (
-            <div
-              className="col-8 col-md-6 col-lg-3 p-2"
-              key={`${item.user.name} + ${item.date}`}
-            >
+            <div className="col-8 col-md-6 col-lg-3 p-2" key={item.id}>
               <TestimonialCard {...item} />
             </div>
           ))}
