@@ -27,7 +27,7 @@ export default function Nav() {
 
   return (
     <div className="container">
-      <nav className="navbar navbar-expand-md navbar-light py-3">
+      <nav className="navbar navbar-expand-lg navbar-light py-3">
         <NavLink to="/" className="nav-link">
           <img
             src={logo}

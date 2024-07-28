@@ -10,8 +10,10 @@ import {
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+
 import Header from "../src/components/header/Header";
 import Footer from "../src/components/footer/Footer";
+import Reservation from "./components/reservation/Reservation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -25,6 +27,7 @@ const Layout = () => {
   );
 };
 
+// animation component
 const PageTransitionWrapper = ({ children }) => {
   const location = useLocation();
 
@@ -43,6 +46,7 @@ const PageTransitionWrapper = ({ children }) => {
   );
 };
 
+// v6.2+ recommended sytax
 const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -76,7 +80,7 @@ const router = createBrowserRouter([
         path: "/Reservation",
         element: (
           <PageTransitionWrapper>
-            <>Reservation Page</>
+            <Reservation />
           </PageTransitionWrapper>
         ),
       },
