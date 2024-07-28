@@ -6,11 +6,11 @@ export default function AboutSection() {
       <div className="container bg-white">
         <div className="row">
           <div className="col-12 col-lg-6 text-lg-left text-center mb-4 mb-lg-0">
-            <h2 className="text-green ">Little Lemon</h2>
-            <h4 className="mb-5 text-muted">Chicago</h4>
+            <h2 className="text-yellow m-0">Little Lemon</h2>
+            <h3 className="my-0 mb-5 text-muted">Chicago</h3>
             <p
               className="ml-lg-0 mr-lg-0 ml-md-auto mr-md-auto"
-              style={{ maxWidth: "30rem" }}
+              style={{ maxWidth: "25em" }}
             >
               Little Lemon is a charming neighborhood bistro that serves simple
               food and classic cocktails in a lively but casual environment the

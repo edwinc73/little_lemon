@@ -58,21 +58,21 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
           boxSizing: "border-box",
         }}
       >
-        <span className="d-flex flex-column flex-lg-row justify-content-between mt-3 mb-1">
-          <p className="col-12 col-lg-9 col-md-12 font-weight-bold p-0 m-0">
-            {name}
+        <span className="d-flex flex-column flex-lg-row align-items-center mt-3 mb-1">
+          <p className="card-title col-12 col-lg-9 col-md-12 p-0 m-0">{name}</p>
+          <p className="pill col-12 col-md-3 text-lg-center p-0 m-0">
+            ${price}
           </p>
-          <p className="col-12 col-md-3 text-lg-right p-0 m-0">${price}</p>
         </span>
         <p
-          className="text-dark p-0 m-0 d-none d-lg-block"
+          className="text-green p-0 m-0 d-none d-lg-block"
           style={{ height: "130px" }}
         >
           {description}
         </p>
         <a
           href="/"
-          className="text-green  justify-self-end font-weight-bold mt-auto"
+          className="text-green justify-self-end font-weight-bold mt-auto"
         >
           Order Delivery
           <img
@@ -95,7 +95,7 @@ export default function FeaturedSection() {
           <h2 className="m-0 col-12 col-md-8 mb-2 mb-md-0">
             This week’s specials!
           </h2>
-          <Button className="btn ml-auto mx-auto ml-md-auto mr-md-0 bg-yellow">
+          <Button className="btn ml-auto my-auto mx-auto ml-md-auto mr-md-0 bg-yellow">
             Order Online
           </Button>
         </div>

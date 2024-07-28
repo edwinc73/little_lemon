@@ -25,10 +25,10 @@ export default function HeroSection() {
           >
             <div className="text-container">
               <h1 className="text-yellow">Little Lemon</h1>
-              <h2 className="text-white">Chicago</h2>
+              <h3 className="text-white">Chicago</h3>
               <p
-                className="text-white my-4 mx-md-0 mx-auto"
-                style={{ maxWidth: "20rem" }}
+                className="display text-white my-4 mx-md-0 mx-auto"
+                style={{ maxWidth: "25rem" }}
               >
                 We are a family owned Mediterranean restaurant, focused on
                 traditional recipes served with a modern twist.

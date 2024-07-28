@@ -69,7 +69,7 @@ const TestimonialCard = (props) => {
         </div>
         <div className="details">
           <h4 className="m-0">{props.title}</h4>
-          <p className="m-0 text-secondary">{props.body}</p>
+          <p className="m-0 text-muted">{props.body}</p>
         </div>
         <div className="user d-flex">
           <img

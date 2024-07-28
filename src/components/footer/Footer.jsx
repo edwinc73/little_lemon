@@ -24,7 +24,7 @@ const FooterContainer = ({ children }) => {
 const FootNavCol = ({ title, arr }) => {
   return (
     <FooterContainer>
-      <h4 className="text-yellow text-md-left align-items-left mb-2 text-center">
+      <h4 className="text-yellow text-md-left align-items-left mb-4 text-center">
         {title}
       </h4>
       <ul className="list-unstyled">
@@ -33,11 +33,11 @@ const FootNavCol = ({ title, arr }) => {
             href={link}
             target="_blank"
             rel="noreferrer"
-            className="text-yellow"
+            className="text-white"
             key={title + name}
           >
             <li className="text-md-left align-items-left text-center">
-              {name}
+              <p className="small my-2 pd-0">{name}</p>
             </li>
           </a>
         ))}
