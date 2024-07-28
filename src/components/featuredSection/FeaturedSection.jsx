@@ -41,6 +41,7 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
       style={{ borderRadius: cardBorderRadius }}
     >
       <img
+        loading="lazy"
         src={src}
         className="img-fluid w-100"
         alt={`Delicious ${name}`}
@@ -76,6 +77,7 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
         >
           Order Delivery
           <img
+            loading="lazy"
             src={deliveryIcon}
             style={{ height: "15px" }}
             alt="delivery icon"

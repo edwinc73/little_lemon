@@ -38,6 +38,7 @@ export default function HeroSection() {
           </div>
           <img
             src={heroImage}
+            loading="lazy"
             alt="Delicious Little Lemon specials"
             className="img-fluid mx-auto col-6 p-0"
             style={{

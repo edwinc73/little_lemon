@@ -53,6 +53,7 @@ export default function Footer() {
         <div className="row align-item-md-left">
           <FooterContainer>
             <img
+              loading="lazy"
               style={{
                 minHeight: "120px",
                 maxHeight: "260px",

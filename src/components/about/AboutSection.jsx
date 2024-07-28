@@ -29,6 +29,7 @@ export default function AboutSection() {
             }}
           >
             <img
+              loading="lazy"
               src={aboutImg}
               alt="mario and adrian cooking"
               className="img-fluid"

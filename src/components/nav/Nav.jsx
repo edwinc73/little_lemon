@@ -28,7 +28,7 @@ export default function Nav() {
   return (
     <div className="container">
       <nav className="navbar navbar-expand-md navbar-light py-3">
-        <a href="/" aria-label="Home">
+        <NavLink to="/" className="nav-link">
           <img
             src={logo}
             alt="Little Lemon Logo"
@@ -36,7 +36,7 @@ export default function Nav() {
             className="img-fluid"
             style={{ minHeight: "47px" }}
           />
-        </a>
+        </NavLink>
         <button
           class="navbar-toggler"
           type="button"

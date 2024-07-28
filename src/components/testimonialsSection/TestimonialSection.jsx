@@ -43,6 +43,7 @@ const Rating = ({ rating }) => {
   for (let i = 0; i < 5; i++) {
     starElements.push(
       <img
+        loading="lazy"
         key={i}
         src={i < validRating ? starFilled : starUnfilled}
         alt={i < validRating ? "filled star" : "unfilled star"}
@@ -73,6 +74,7 @@ const TestimonialCard = (props) => {
         </div>
         <div className="user d-flex">
           <img
+            loading="lazy"
             src={props.user.img}
             alt={`${props.user.name} profile`}
             className="rounded-circle img-fluid mr-2"
