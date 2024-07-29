@@ -4,7 +4,6 @@ export default function Button({
   type,
   disabled = false,
 }) {
-  console.log(disabled);
   return (
     <>
       <button

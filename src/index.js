@@ -14,6 +14,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Header from "../src/components/header/Header";
 import Footer from "../src/components/footer/Footer";
 import Reservation from "./components/reservation/Reservation";
+import Main from "./components/main/Main";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -21,7 +22,9 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <Main>
+        <Outlet />
+      </Main>
       <Footer />
     </>
   );
@@ -51,6 +54,7 @@ const router = createBrowserRouter([
   {
     element: <Layout />,
     errorElement: <div> error</div>,
+
     children: [
       {
         path: "/",

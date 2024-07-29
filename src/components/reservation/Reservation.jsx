@@ -1,35 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReservationForm from "../reservationForm/ReservationForm";
+import { useAvailableTimes } from "../../context/AvailableTimesContext";
 
 // form date time logic
 
 const today = new Date();
 const minDate = new Date(today);
 minDate.setDate(today.getDate() + 1);
-const maxDate = new Date(today);
-maxDate.setDate(today.getDate() + 7);
-
-const formatDate = (date) => {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  return `${year}-${month}-${day}T${hours}:${minutes}`;
-};
 
 const formSuccess = (name) =>
   toast.success(`Booking success! Thank you ${name}.`);
 const formFail = () => toast.error("Oops, please try again");
 
 export default function Reservation() {
+  const { availableTimes, setAvailableTimes, findDate } = useAvailableTimes();
+
   const [formData, setFormData] = useState({
     formName: { value: "", touched: false },
     formGuests: { value: 0, touched: false },
     formOccasion: { value: "None, Casual Dining", touched: true },
     formDate: { value: "", touched: false },
+    formTime: { value: "", touched: false },
   });
 
   const handleChange = (e) => {
@@ -46,14 +39,31 @@ export default function Reservation() {
     setFormData({
       formName: { value: "", touched: false },
       formGuests: { value: 0, touched: false },
-      formOccasion: { value: "None, Casual Dining", touched: false },
-      formDate: { value: formatDate(minDate), touched: false },
+      formOccasion: { value: "None, Casual Dining", touched: true },
+      formDate: { value: "", touched: false },
+      formTime: { value: "", touched: false },
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid(formData)) {
+      setAvailableTimes((prev) => {
+        const { formDate, formTime } = formData;
+        return prev.map((day) => {
+          if (day.date === formDate.value) {
+            return {
+              ...day,
+              slots: day.slots.map((slot) => {
+                return slot.time === formTime.value
+                  ? { ...slot, available: false }
+                  : slot;
+              }),
+            };
+          }
+          return day;
+        });
+      });
       formSuccess(formData.formName.value);
       restFormData();
     } else {
@@ -90,9 +100,9 @@ export default function Reservation() {
           formData={formData}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          formatDate={formatDate}
           minDate={minDate}
-          maxDate={maxDate}
+          availableTimes={availableTimes}
+          findDate={findDate}
         ></ReservationForm>
       </div>
       <ToastContainer position="bottom-left" limit={5} />

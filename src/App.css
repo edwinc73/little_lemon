@@ -133,6 +133,10 @@ footer h4 {
   background-size: cover;
 }
 
+option:disabled {
+  color: lightgrey;
+}
+
 @media (max-width: 768px) {
   #hero-text-container {
     margin-bottom: 30px;

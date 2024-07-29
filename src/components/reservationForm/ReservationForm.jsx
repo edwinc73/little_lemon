@@ -4,9 +4,8 @@ export default function ReservationForm({
   formData,
   handleChange,
   handleSubmit,
-  formatDate,
-  minDate,
-  maxDate,
+  availableTimes,
+  findDate,
 }) {
   return (
     <form
@@ -68,22 +67,67 @@ export default function ReservationForm({
           Choose an occasion to enhance your experience
         </small>
       </div>
-      <div className="form-group">
-        <label htmlFor="formDate">Date</label>
-        <input
-          onChange={handleChange}
-          type="datetime-local"
-          className="form-control w-100"
-          id="formDate"
-          aria-describedby="guestHelp"
-          min={formatDate(minDate)}
-          max={formatDate(maxDate)}
-          value={formData.formDate.value}
-          required
-        />
-        <small id="guestHelp" className="form-text text-muted">
-          Please select the reservation date and time
-        </small>
+      <div className="row">
+        <div className="form-group col-6">
+          <label htmlFor="formDate">Date</label>
+          <input
+            onChange={handleChange}
+            type="date"
+            className="form-control w-100"
+            id="formDate"
+            aria-describedby="guestHelp"
+            min={availableTimes[0].date}
+            max={availableTimes[7].date}
+            value={formData.formDate.value}
+            required
+          />
+          <small id="guestHelp" className="form-text text-muted">
+            Please select the reservation date
+          </small>
+        </div>
+        <div className="form-group col-6">
+          <label htmlFor="formTime">Time</label>
+          <select
+            className="form-control"
+            id="formTime"
+            aria-describedby="timehelp"
+            required
+            value={formData.formTime.value}
+            onChange={handleChange}
+            disabled={formData.formDate.value === ""}
+          >
+            <option>
+              {formData.formDate.value === ""
+                ? "Select Date First"
+                : "Select Time"}
+            </option>
+
+            {formData.formDate.value !== "" &&
+              findDate(availableTimes, formData.formDate.value).slots.map(
+                (item) => {
+                  if (!item.available) {
+                    return (
+                      <option
+                        className="strike-through"
+                        disabled
+                        key={item.time}
+                      >
+                        {item.time}
+                      </option>
+                    );
+                  }
+                  return (
+                    <option className="text-dark" key={item.time}>
+                      {item.time}
+                    </option>
+                  );
+                }
+              )}
+          </select>
+          <small id="timehelp" className="form-text text-muted">
+            Please select the reservation time
+          </small>
+        </div>
       </div>
       <div className="col-12 p-0 d-flex justify-content-center">
         <Button type="submit">Book Table</Button>

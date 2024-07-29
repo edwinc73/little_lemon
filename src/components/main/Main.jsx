@@ -1,5 +1,10 @@
 import React from "react";
+import { AvailableTimesProvider } from "../../context/AvailableTimesContext";
 
 export default function Main({ children }) {
-  return <main>{children}</main>;
+  return (
+    <AvailableTimesProvider>
+      <main>{children}</main>;
+    </AvailableTimesProvider>
+  );
 }

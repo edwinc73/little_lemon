@@ -3,20 +3,17 @@ import "./App.css";
 
 import FeaturedSection from "./components/featuredSection/FeaturedSection";
 import HeroSection from "./components/heroSection/HeroSection";
-import Main from "./components/main/Main";
 import TestimonialSection from "./components/testimonialsSection/TestimonialSection";
 import AboutSection from "./components/about/AboutSection";
 
 function App() {
   return (
-    <React.Fragment>
-      <Main>
-        <HeroSection></HeroSection>
-        <FeaturedSection></FeaturedSection>
-        <TestimonialSection></TestimonialSection>
-        <AboutSection></AboutSection>
-      </Main>
-    </React.Fragment>
+    <>
+      <HeroSection></HeroSection>
+      <FeaturedSection></FeaturedSection>
+      <TestimonialSection></TestimonialSection>
+      <AboutSection></AboutSection>
+    </>
   );
 }
 

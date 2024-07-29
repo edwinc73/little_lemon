@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImage from "../../images/restauranfood.jpg";
 import Button from "../button/Button";
 
@@ -34,7 +35,9 @@ export default function HeroSection() {
                 traditional recipes served with a modern twist.
               </p>
             </div>
-            <Button>Reserve Table</Button>
+            <Link to="/reservation">
+              <Button>Reserve Table</Button>
+            </Link>
           </div>
           <img
             src={heroImage}
