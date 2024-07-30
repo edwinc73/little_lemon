@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, fireEvent, screen } from "@testing-library/react";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import FeaturedSection from "./components/featuredSection/FeaturedSection";
+
+test("Renders the BookingForm heading", () => {
+  render(<FeaturedSection />);
+  const headingElement = screen.getByText("This week’s specials!");
+  expect(headingElement).toBeInTheDocument();
 });

@@ -3,114 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-  useLocation,
-} from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-
-import Header from "../src/components/header/Header";
-import Footer from "../src/components/footer/Footer";
-import Reservation from "./components/reservation/Reservation";
-import Main from "./components/main/Main";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const Layout = () => {
-  return (
-    <>
-      <Header />
-      <Main>
-        <Outlet />
-      </Main>
-      <Footer />
-    </>
-  );
-};
-
-// animation component
-const PageTransitionWrapper = ({ children }) => {
-  const location = useLocation();
-
-  return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
-  );
-};
-
-// v6.2+ recommended sytax
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    errorElement: <div> error</div>,
-
-    children: [
-      {
-        path: "/",
-        element: (
-          <PageTransitionWrapper>
-            <App />
-          </PageTransitionWrapper>
-        ),
-      },
-      {
-        path: "/About",
-        element: (
-          <PageTransitionWrapper>
-            <>About Page</>
-          </PageTransitionWrapper>
-        ),
-      },
-      {
-        path: "/Menu",
-        element: (
-          <PageTransitionWrapper>
-            <>Menu Page</>
-          </PageTransitionWrapper>
-        ),
-      },
-      {
-        path: "/Reservation",
-        element: (
-          <PageTransitionWrapper>
-            <Reservation />
-          </PageTransitionWrapper>
-        ),
-      },
-      {
-        path: "/orderOnline",
-        element: (
-          <PageTransitionWrapper>
-            <>orderOnline Page</>
-          </PageTransitionWrapper>
-        ),
-      },
-      {
-        path: "/Login",
-        element: (
-          <PageTransitionWrapper>
-            <>Login</>
-          </PageTransitionWrapper>
-        ),
-      },
-    ],
-  },
-]);
-
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
 

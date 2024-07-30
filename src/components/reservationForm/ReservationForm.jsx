@@ -1,12 +1,41 @@
+import { useState } from "react";
 import Button from "../button/Button";
+import formatDate from "../../utils/formdatDate";
+
+const today = new Date();
+const minDate = new Date(today);
+minDate.setDate(today.getDate() + 1);
+const maxDate = new Date(today);
+maxDate.setDate(today.getDate() + 8);
 
 export default function ReservationForm({
-  formData,
-  handleChange,
+  dispatch,
   handleSubmit,
   availableTimes,
-  findDate,
 }) {
+  const [formData, setFormData] = useState({
+    formName: { value: "", touched: false },
+    formGuests: { value: 0, touched: false },
+    formOccasion: { value: "None, Casual Dining", touched: true },
+    formDate: { value: "", touched: false },
+    formTime: { value: "", touched: false },
+  });
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: {
+        value: e.target.value,
+        touched: true,
+      },
+    }));
+  };
+  const handleDateChange = (e) => {
+    handleChange(e);
+
+    dispatch({ type: "updateTimeSlot", payload: e.target.value });
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -71,14 +100,14 @@ export default function ReservationForm({
         <div className="form-group col-6">
           <label htmlFor="formDate">Date</label>
           <input
-            onChange={handleChange}
+            onChange={handleDateChange}
             type="date"
             className="form-control w-100"
             id="formDate"
             aria-describedby="guestHelp"
-            min={availableTimes[0].date}
-            max={availableTimes[7].date}
             value={formData.formDate.value}
+            min={formatDate(minDate)}
+            max={formatDate(maxDate)}
             required
           />
           <small id="guestHelp" className="form-text text-muted">
@@ -102,27 +131,20 @@ export default function ReservationForm({
                 : "Select Time"}
             </option>
 
-            {formData.formDate.value !== "" &&
-              findDate(availableTimes, formData.formDate.value).slots.map(
-                (item) => {
-                  if (!item.available) {
-                    return (
-                      <option
-                        className="strike-through"
-                        disabled
-                        key={item.time}
-                      >
-                        {item.time}
-                      </option>
-                    );
-                  }
-                  return (
-                    <option className="text-dark" key={item.time}>
-                      {item.time}
-                    </option>
-                  );
-                }
-              )}
+            {availableTimes.map((item) => {
+              if (!item.available) {
+                return (
+                  <option className="strike-through" disabled key={item.time}>
+                    {item.time}
+                  </option>
+                );
+              }
+              return (
+                <option className="text-dark" key={item.time}>
+                  {item.time}
+                </option>
+              );
+            })}
           </select>
           <small id="timehelp" className="form-text text-muted">
             Please select the reservation time

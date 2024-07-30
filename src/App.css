@@ -73,6 +73,7 @@ a.text-yellow:hover {
   background-color: #f4ce14;
   border-radius: 16px;
   line-height: 24px;
+  width: fit-content;
 }
 
 .bg-gray {
