@@ -10,9 +10,9 @@ maxDate.setDate(today.getDate() + 8);
 export default function ReservationForm({
   formData,
   setFormData,
-  dispatch,
   handleSubmit,
   availableTimes,
+  loading,
 }) {
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -24,10 +24,15 @@ export default function ReservationForm({
     }));
   };
 
-  const handleDateChange = (e) => {
-    handleChange(e);
+  const TimeOptionText = () => {
+    if (loading) {
+      return <option>Loading data...</option>;
+    }
 
-    dispatch({ type: "updateTimeSlot", payload: e.target.value });
+    if (formData.formDate.value === "") {
+      return <option>Select Date First</option>;
+    }
+    return <option>Select Time</option>;
   };
 
   return (
@@ -94,7 +99,7 @@ export default function ReservationForm({
         <div className="form-group col-6">
           <label htmlFor="formDate">Date</label>
           <input
-            onChange={handleDateChange}
+            onChange={handleChange}
             type="date"
             className="form-control w-100"
             id="formDate"
@@ -119,12 +124,7 @@ export default function ReservationForm({
             onChange={handleChange}
             disabled={formData.formDate.value === ""}
           >
-            <option>
-              {formData.formDate.value === ""
-                ? "Select Date First"
-                : "Select Time"}
-            </option>
-
+            <TimeOptionText />
             {availableTimes.map((item) => {
               if (!item.available) {
                 return (

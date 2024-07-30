@@ -1,39 +1,33 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReservationForm from "../components/reservationForm/ReservationForm";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
+import { fetchAPI, submitAPI } from "../utils/api.js";
+import formatDate from "../utils/formdatDate.js";
 
+// toast logic
 const formSuccess = (name) =>
   toast.success(`Booking success! Thank you ${name}.`);
 const formFail = () => toast.error("Oops, please try again");
 
-const initializeTimes = () => {
-  const startTime = "10:00";
-  const endTime = "22:00";
-  const start = new Date(`1970-01-01T${startTime}:00`);
-  const end = new Date(`1970-01-01T${endTime}:00`);
-
-  const slots = [];
-  let current = start;
-
-  while (current <= end) {
-    const formattedTime = current.toTimeString().slice(0, 5);
-    const available = Math.random() > 0.5;
-
-    slots.push({ time: formattedTime, available });
-    current.setMinutes(current.getMinutes() + 30);
-  }
-
-  return slots;
-};
-
 const tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
 
+// available times reducer logic
+
+const initializeTimes = () => {
+  return {
+    availableTimes: [],
+    loading: true,
+  };
+};
+
 const updateTimes = (state, action) => {
   switch (action.type) {
-    case "updateTimeSlot":
-      return state;
+    case "setTimes":
+      return { ...state, availableTimes: action.payload, loading: false };
+    case "setLoading":
+      return { ...state, loading: true };
     default:
       break;
   }
@@ -47,18 +41,43 @@ export default function Reservation() {
     formDate: { value: "", touched: false },
     formTime: { value: "", touched: false },
   });
-  const [availableTimes, dispatch] = useReducer(
+  const [{ availableTimes, loading }, dispatch] = useReducer(
     updateTimes,
     [],
     initializeTimes
   );
 
+  useEffect(() => {
+    dispatch({ type: "setLoading" });
+    setFormData((prev) => ({
+      ...prev,
+      formTime: { value: "", touched: false },
+    }));
+    const fetchData = async () => {
+      try {
+        const data = await fetchAPI(
+          formData.formDate.value ? new Date(formData.formDate.value) : tomorrow
+        );
+        dispatch({ type: "setTimes", payload: data });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [formData.formDate]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (isValid(formData)) {
-      formSuccess(formData.formName.value);
-      resetFormData();
+      try {
+        submitAPI(formData);
+        formSuccess(formData.formName.value);
+        resetFormData();
+      } catch (error) {
+        formFail();
+        console.error(error);
+      }
     } else {
       formFail();
     }
@@ -105,6 +124,7 @@ export default function Reservation() {
           dispatch={dispatch}
           handleSubmit={handleSubmit}
           availableTimes={availableTimes}
+          loading={loading}
         ></ReservationForm>
       </div>
       <ToastContainer position="bottom-left" limit={5} />
