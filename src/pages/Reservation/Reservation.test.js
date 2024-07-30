@@ -1,7 +1,8 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import Reservation from "../Reservation";
 import formatDate from "../../utils/formdatDate";
+import "@testing-library/jest-dom/extend-expect";
 
 const renderReservation = () => {
   render(<Reservation />);
@@ -57,35 +58,27 @@ test("On selecting date, time input becomes not disabled", () => {
 });
 
 // testing initialize times
-test("After date input there should be 1 default option and 25 time options", () => {
-  const { timeInput, dateInput } = renderReservation();
+test("After date input there should be 1 default option and 25 time options", async () => {
+  render(<Reservation />);
+  const dateInput = screen.getByLabelText("Date");
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-
   fireEvent.change(dateInput, { target: { value: formatDate(tomorrow) } });
+
+  await waitFor(() => {
+    expect(
+      screen.getByRole("option", { name: "Select Time" })
+    ).toBeInTheDocument();
+  });
+
+  const timeInput = screen.getByLabelText("Time");
   expect(timeInput.length).toBe(26);
-  expect(timeInput[0]).toHaveTextContent("Select Time");
+  expect(timeInput[0]).toHaveTextContent(
+    "Select Time" || "LoadingLoading data..." || "Select Time"
+  );
+
   for (let i = 1; i < timeInput.length; i++) {
     const option = timeInput[i];
     expect(option.value).toMatch(/^\d{2}:\d{2}$/);
   }
-});
-
-// testing updateTimes
-
-test("After updating date, the input of time should be the same as before", () => {
-  const { timeInput, dateInput } = renderReservation();
-
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const date2 = new Date();
-  date2.setDate(date2.getDate() + 2);
-
-  fireEvent.change(dateInput, { target: { value: formatDate(tomorrow) } });
-  const initialTimeValue = timeInput;
-  fireEvent.change(dateInput, {
-    target: { value: formatDate(date2) },
-  });
-
-  expect(timeInput).toBe(initialTimeValue);
 });

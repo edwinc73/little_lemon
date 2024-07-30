@@ -1,9 +1,9 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReservationForm from "../components/reservationForm/ReservationForm";
-import { useEffect, useReducer, useRef, useState } from "react";
-import { fetchAPI, submitAPI } from "../utils/api.js";
-import formatDate from "../utils/formdatDate.js";
+import ReservationForm from "../../components/reservationForm/ReservationForm.jsx";
+import { useEffect, useReducer, useState } from "react";
+import { fetchAPI, submitAPI } from "../../utils/api.js";
+import { useNavigate } from "react-router-dom";
 
 // toast logic
 const formSuccess = (name) =>
@@ -41,11 +41,14 @@ export default function Reservation() {
     formDate: { value: "", touched: false },
     formTime: { value: "", touched: false },
   });
+
   const [{ availableTimes, loading }, dispatch] = useReducer(
     updateTimes,
     [],
     initializeTimes
   );
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({ type: "setLoading" });
@@ -74,6 +77,7 @@ export default function Reservation() {
         submitAPI(formData);
         formSuccess(formData.formName.value);
         resetFormData();
+        navigate(`/reservation/success?name=${formData.formName.value}`);
       } catch (error) {
         formFail();
         console.error(error);
@@ -108,16 +112,13 @@ export default function Reservation() {
   return (
     <section id="reservation">
       <div
-        className="container p-4"
+        className="container p-5"
         style={{
           backgroundColor: "rgba(255,255,255,0.8)",
           borderRadius: "16px",
           backdropFilter: "blur(5px)",
         }}
       >
-        <div className="col-12 mb-4">
-          <h2 className="text-center text-green">Reservation</h2>
-        </div>
         <ReservationForm
           formData={formData}
           setFormData={setFormData}

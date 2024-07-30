@@ -11,9 +11,10 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Header from "../src/components/header/Header";
 import Footer from "../src/components/footer/Footer";
-import Reservation from "../src/pages/Reservation.jsx";
-import Home from "./pages/Home";
-import Main from "./components/main/Main.jsx";
+import Reservation from "../src/pages/Reservation/Reservation";
+import Home from "./pages/home/Home";
+import Main from "./components/main/Main";
+import ConfirmationReservation from "./pages/Reservation/ConfirmReservation";
 
 const Layout = () => {
   return (
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/About",
+        path: "/about",
         element: (
           <PageTransitionWrapper>
             <>About Page</>
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Menu",
+        path: "/menu",
         element: (
           <PageTransitionWrapper>
             <>Menu Page</>
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Reservation",
+        path: "/reservation",
         element: (
           <PageTransitionWrapper>
             <Reservation />
@@ -85,7 +86,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/orderOnline",
+        path: "/reservation/success",
+        element: (
+          <PageTransitionWrapper>
+            <ConfirmationReservation />
+          </PageTransitionWrapper>
+        ),
+      },
+      {
+        path: "/orderonline",
         element: (
           <PageTransitionWrapper>
             <>orderOnline Page</>
@@ -93,7 +102,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/Login",
+        path: "/login",
         element: (
           <PageTransitionWrapper>
             <>Login</>

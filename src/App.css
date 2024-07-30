@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #495e57;
 }
 
 p,
@@ -127,7 +128,8 @@ footer h4 {
   margin-bottom: 180px;
 }
 
-#reservation {
+#reservation,
+#confirmation {
   background-color: white;
   background-image: url("/src/images/restaurant.jpg");
   background-repeat: no-repeat;
