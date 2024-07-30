@@ -1,11 +1,15 @@
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 
-import Reservation from "../Reservation";
+import Reservation from "../Reservation/Reservation.jsx";
 import formatDate from "../../utils/formdatDate";
-import "@testing-library/jest-dom/extend-expect";
+import { BrowserRouter } from "react-router-dom";
 
 const renderReservation = () => {
-  render(<Reservation />);
+  render(
+    <BrowserRouter>
+      <Reservation />
+    </BrowserRouter>
+  );
   const dateInput = screen.getByLabelText("Date");
   const timeInput = screen.getByLabelText("Time");
   return { dateInput, timeInput };
@@ -59,7 +63,11 @@ test("On selecting date, time input becomes not disabled", () => {
 
 // testing initialize times
 test("After date input there should be 1 default option and 25 time options", async () => {
-  render(<Reservation />);
+  render(
+    <BrowserRouter>
+      <Reservation />
+    </BrowserRouter>
+  );
   const dateInput = screen.getByLabelText("Date");
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);

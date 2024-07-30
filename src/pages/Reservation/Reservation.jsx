@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReservationForm from "../../components/reservationForm/ReservationForm.jsx";
 import { useEffect, useReducer, useState } from "react";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 // toast logic
 const formSuccess = (name) =>
-  toast.success(`Booking success! Thank you ${name}.`);
+  toast.success(`Reservation success! Thank you ${name}.`);
 const formFail = () => toast.error("Oops, please try again");
 
 const tomorrow = new Date();
@@ -128,7 +128,6 @@ export default function Reservation() {
           loading={loading}
         ></ReservationForm>
       </div>
-      <ToastContainer position="bottom-left" limit={5} />
     </section>
   );
 }
