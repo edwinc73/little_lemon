@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "../button/Button";
 import formatDate from "../../utils/formdatDate";
 
@@ -9,18 +8,12 @@ const maxDate = new Date(today);
 maxDate.setDate(today.getDate() + 8);
 
 export default function ReservationForm({
+  formData,
+  setFormData,
   dispatch,
   handleSubmit,
   availableTimes,
 }) {
-  const [formData, setFormData] = useState({
-    formName: { value: "", touched: false },
-    formGuests: { value: 0, touched: false },
-    formOccasion: { value: "None, Casual Dining", touched: true },
-    formDate: { value: "", touched: false },
-    formTime: { value: "", touched: false },
-  });
-
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -30,6 +23,7 @@ export default function ReservationForm({
       },
     }));
   };
+
   const handleDateChange = (e) => {
     handleChange(e);
 

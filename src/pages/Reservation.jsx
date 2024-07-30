@@ -1,11 +1,11 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReservationForm from "../components/reservationForm/ReservationForm";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
-// const formSuccess = (name) =>
-//   toast.success(`Booking success! Thank you ${name}.`);
-// const formFail = () => toast.error("Oops, please try again");
+const formSuccess = (name) =>
+  toast.success(`Booking success! Thank you ${name}.`);
+const formFail = () => toast.error("Oops, please try again");
 
 const initializeTimes = () => {
   const startTime = "10:00";
@@ -40,6 +40,13 @@ const updateTimes = (state, action) => {
 };
 
 export default function Reservation() {
+  const [formData, setFormData] = useState({
+    formName: { value: "", touched: false },
+    formGuests: { value: 0, touched: false },
+    formOccasion: { value: "None, Casual Dining", touched: true },
+    formDate: { value: "", touched: false },
+    formTime: { value: "", touched: false },
+  });
   const [availableTimes, dispatch] = useReducer(
     updateTimes,
     [],
@@ -48,36 +55,36 @@ export default function Reservation() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // if (isValid(e.current)) {
-    //   dispatch({ type: "updateTimeSlot" });
-    //   formSuccess(formData.formName.value);
-    //   restFormData();
-    // } else {
-    //   formFail();
-    // }
+
+    if (isValid(formData)) {
+      formSuccess(formData.formName.value);
+      resetFormData();
+    } else {
+      formFail();
+    }
   };
 
-  // const isValid = (obj) => {
-  //   const isAllTouched = Object.values(obj).every(
-  //     (item) => item.touched === true
-  //   );
-  //   return (
-  //     obj.formName.value !== "" &&
-  //     obj.formGuests.value >= 1 &&
-  //     obj.formGuests.value <= 12 &&
-  //     isAllTouched
-  //   );
-  // };
+  const isValid = (obj) => {
+    const isAllTouched = Object.values(obj).every(
+      (item) => item.touched === true
+    );
+    return (
+      obj.formName.value !== "" &&
+      obj.formGuests.value >= 1 &&
+      obj.formGuests.value <= 12 &&
+      isAllTouched
+    );
+  };
 
-  // const restFormData = () => {
-  //   setFormData({
-  //     formName: { value: "", touched: false },
-  //     formGuests: { value: 0, touched: false },
-  //     formOccasion: { value: "None, Casual Dining", touched: true },
-  //     formDate: { value: "", touched: false },
-  //     formTime: { value: "", touched: false },
-  //   });
-  // };
+  const resetFormData = () => {
+    setFormData({
+      formName: { value: "", touched: false },
+      formGuests: { value: 0, touched: false },
+      formOccasion: { value: "None, Casual Dining", touched: true },
+      formDate: { value: "", touched: false },
+      formTime: { value: "", touched: false },
+    });
+  };
 
   return (
     <section id="reservation">
@@ -93,6 +100,8 @@ export default function Reservation() {
           <h2 className="text-center text-green">Reservation</h2>
         </div>
         <ReservationForm
+          formData={formData}
+          setFormData={setFormData}
           dispatch={dispatch}
           handleSubmit={handleSubmit}
           availableTimes={availableTimes}
