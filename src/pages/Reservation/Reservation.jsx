@@ -54,6 +54,7 @@ export default function Reservation() {
 
   const navigate = useNavigate();
 
+  // onChanging the date, fetch available tiems from api or session storage
   useEffect(() => {
     console.log(availableTimes);
   }, [availableTimes]);
@@ -69,12 +70,15 @@ export default function Reservation() {
       const sessionData = isStored(formData.formDate.value);
       console.log(sessionData);
       try {
-        const date = formData.formDate.value;
+        const date = formData.formDate;
         let data;
 
         if (sessionData) {
           data = sessionData;
-        } else if (date === "") {
+        } else if (date.touched) {
+          data = await fetchAPI(date);
+          setSessionStorage(date, data);
+        } else {
           data = [];
         }
         dispatch({ type: "setTimes", payload: data });

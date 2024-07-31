@@ -11,6 +11,7 @@ export const fetchAPI = function (date) {
   return new Promise((resolve) => {
     let result = [];
     let random = seededRandom(new Date(date));
+    console.log(random());
     const start = new Date(`1970-01-01T10:00`);
     const end = new Date(`1970-01-01T22:00`);
     let current = start;
