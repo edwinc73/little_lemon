@@ -4,6 +4,8 @@ import ReservationForm from "../../components/reservationForm/ReservationForm.js
 import { useEffect, useReducer, useState } from "react";
 import { fetchAPI, submitAPI } from "../../utils/api.js";
 import { useNavigate } from "react-router-dom";
+import { isStored, setSessionStorage } from "../../utils/sessionStorage.js";
+import formatDate from "../../utils/formdatDate.js";
 
 // toast logic
 const formSuccess = (name) =>
@@ -28,6 +30,8 @@ const updateTimes = (state, action) => {
       return { ...state, availableTimes: action.payload, loading: false };
     case "setLoading":
       return { ...state, loading: true };
+    case "submitForm":
+      return { ...state, availableTimes: action.payload, loading: true };
     default:
       break;
   }
@@ -51,32 +55,57 @@ export default function Reservation() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(availableTimes);
+  }, [availableTimes]);
+
+  useEffect(() => {
     dispatch({ type: "setLoading" });
     setFormData((prev) => ({
       ...prev,
       formTime: { value: "", touched: false },
     }));
+
     const fetchData = async () => {
+      const sessionData = isStored(formData.formDate.value);
+      console.log(sessionData);
       try {
-        const data = await fetchAPI(
-          formData.formDate.value ? new Date(formData.formDate.value) : tomorrow
-        );
+        const date = formData.formDate.value;
+        let data;
+
+        if (sessionData) {
+          data = sessionData;
+        } else if (date === "") {
+          data = [];
+        }
         dispatch({ type: "setTimes", payload: data });
       } catch (error) {
         console.error(error);
       }
     };
+
     fetchData();
   }, [formData.formDate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const newAvailableTimes = availableTimes.map((item) => {
+      if (item.time === formData.formTime.value) {
+        return {
+          ...item,
+          available: false,
+        };
+      }
+      return item;
+    });
+
     if (isValid(formData)) {
       try {
+        dispatch({ type: "submitForm", payload: newAvailableTimes });
+        setSessionStorage(formData.formDate.value, newAvailableTimes);
         submitAPI(formData);
-        formSuccess(formData.formName.value);
         resetFormData();
+        formSuccess(formData.formName.value);
         navigate(`/reservation/success?name=${formData.formName.value}`);
       } catch (error) {
         formFail();
