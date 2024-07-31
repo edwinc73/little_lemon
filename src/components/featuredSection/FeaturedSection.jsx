@@ -1,6 +1,6 @@
-import greekSaladImage from "../../images/greek salad.jpg";
-import bruchettaImage from "../../images/bruchetta.png";
-import greekImage from "../../images/lemon dessert.jpg";
+import greekSaladImage from "../../images/greek salad.avif";
+import bruchettaImage from "../../images/bruchetta.avif";
+import greekImage from "../../images/lemon-dessert.avif";
 import deliveryIcon from "../../images/Delivery.svg";
 import Button from "../button/Button";
 

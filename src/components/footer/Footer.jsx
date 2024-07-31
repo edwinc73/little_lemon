@@ -1,4 +1,4 @@
-import footerLogo from "../../images/footerLogo 1.png";
+import footerLogo from "../../images/footerLogo 1.avif";
 
 const doormatNav = [
   { name: "Home", link: "/" },

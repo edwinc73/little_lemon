@@ -1,4 +1,4 @@
-import aboutImg from "../../images/adrian and mario.png";
+import aboutImg from "../../images/adrian and mario.avif";
 
 export default function AboutSection() {
   return (

@@ -1,6 +1,6 @@
 import starFilled from "../../images/star-filled.svg";
 import starUnfilled from "../../images/star-unfilled.svg";
-import userProfilePic from "../../images/user.png";
+import userProfilePic from "../../images/user.avif";
 
 const testimonials = [
   {

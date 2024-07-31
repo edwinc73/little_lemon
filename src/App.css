@@ -131,7 +131,7 @@ footer h4 {
 #reservation,
 #confirmation {
   background-color: white;
-  background-image: url("/src/images/restaurant.jpg");
+  background-image: url("/src/images/restaurant.avif");
   background-repeat: no-repeat;
   background-size: cover;
 }
