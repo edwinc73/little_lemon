@@ -88,12 +88,12 @@ export default function ReservationForm({
             value={formData.formOccasion.value}
             onChange={handleChange}
           >
-            <option>None, Casual Dining</option>
-            <option>Birthday</option>
-            <option>Anniversary</option>
-            <option>Private Dining</option>
-            <option>Corporate Event</option>
-            <option>Chef’s Table</option>
+            <option data-testid="occassion-option">None, Casual Dining</option>
+            <option data-testid="occassion-option">Birthday</option>
+            <option data-testid="occassion-option">Anniversary</option>
+            <option data-testid="occassion-option">Private Dining</option>
+            <option data-testid="occassion-option">Corporate Event</option>
+            <option data-testid="occassion-option">Chef’s Table</option>
           </select>
           <small id="occasionHelp" className="form-text text-muted">
             Choose an occasion to enhance your experience

@@ -5,7 +5,6 @@ import { useEffect, useReducer, useState } from "react";
 import { fetchAPI, submitAPI } from "../../utils/api.js";
 import { useNavigate } from "react-router-dom";
 import { isStored, setSessionStorage } from "../../utils/sessionStorage.js";
-import formatDate from "../../utils/formdatDate.js";
 
 // toast logic
 const formSuccess = (name) =>
@@ -56,10 +55,6 @@ export default function Reservation() {
 
   // onChanging the date, fetch available tiems from api or session storage
   useEffect(() => {
-    console.log(availableTimes);
-  }, [availableTimes]);
-
-  useEffect(() => {
     dispatch({ type: "setLoading" });
     setFormData((prev) => ({
       ...prev,
@@ -68,7 +63,6 @@ export default function Reservation() {
 
     const fetchData = async () => {
       const sessionData = isStored(formData.formDate.value);
-      console.log(sessionData);
       try {
         const date = formData.formDate;
         let data;
