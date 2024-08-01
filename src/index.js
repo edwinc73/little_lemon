@@ -19,6 +19,7 @@ import Home from "./pages/home/Home";
 import Main from "./components/main/Main";
 import ConfirmationReservation from "./pages/Reservation/ConfirmReservation";
 import { ToastContainer } from "react-toastify";
+import PageInProgress from "./components/pageInProgress/PageInProgress";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -72,7 +73,9 @@ const router = createBrowserRouter([
         path: "/about",
         element: (
           <PageTransitionWrapper>
-            <>About Page</>
+            <>
+              <PageInProgress></PageInProgress>
+            </>
           </PageTransitionWrapper>
         ),
       },
@@ -80,7 +83,9 @@ const router = createBrowserRouter([
         path: "/menu",
         element: (
           <PageTransitionWrapper>
-            <>Menu Page</>
+            <>
+              <PageInProgress></PageInProgress>
+            </>
           </PageTransitionWrapper>
         ),
       },
@@ -104,7 +109,9 @@ const router = createBrowserRouter([
         path: "/orderonline",
         element: (
           <PageTransitionWrapper>
-            <>orderOnline Page</>
+            <>
+              <PageInProgress></PageInProgress>
+            </>
           </PageTransitionWrapper>
         ),
       },
@@ -112,7 +119,9 @@ const router = createBrowserRouter([
         path: "/login",
         element: (
           <PageTransitionWrapper>
-            <>Login</>
+            <>
+              <PageInProgress></PageInProgress>
+            </>
           </PageTransitionWrapper>
         ),
       },

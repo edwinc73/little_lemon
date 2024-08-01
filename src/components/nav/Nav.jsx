@@ -9,7 +9,7 @@ const NavLinkComponent = ({ link, name, active }) => {
         className={`${({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "active" : ""} nav-link `}
       >
-        {name} {active && <span class="sr-only">(current)</span>}
+        {name} {active && <span className="sr-only">(current)</span>}
       </NavLink>
     </li>
   );
@@ -38,7 +38,7 @@ export default function Nav() {
           />
         </NavLink>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarNavAltMarkup"
@@ -46,7 +46,7 @@ export default function Nav() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul className="navbar-nav ml-auto">
