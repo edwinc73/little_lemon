@@ -60,8 +60,8 @@ const SpecialsCard = ({ id, name, src, price, description }) => {
         }}
       >
         <span className="d-flex flex-column flex-lg-row align-items-center mt-3 mb-1">
-          <p className="card-title col-12 col-lg-9 col-md-12 p-0 m-0">{name}</p>
-          <p className="pill col-12 col-lg-3 text-center py-lg-1 m-0 mr-auto">
+          <p className="card-title col-12 col-lg-8 col-md-12 p-0 m-0">{name}</p>
+          <p className="pill col-12 col-lg-4 text-center py-lg-1 m-0 mr-auto">
             ${price}
           </p>
         </span>
